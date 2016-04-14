@@ -4,8 +4,5 @@
 class Buffer
 {
 public:
-	Buffer();
-private:
-	~Buffer(){};
 };
 #endif
