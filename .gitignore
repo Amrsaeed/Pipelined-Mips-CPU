@@ -1,0 +1,6 @@
+.vs/Pipelined-Mips-CPU/v14/.suo
+*.opensdf
+Pipelined-Mips-CPU.sdf
+*.sln
+Pipelined-Mips-CPU/Pipelined-Mips-CPU.vcxproj
+*.filters
