@@ -1,7 +1,7 @@
 #include <iostream>
 #include "RegisterFile.h"
 
-RegisterFile::RegisterFile(IF_ID_Buffer* IF_ID, Buffer* ID_EX): PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX)
+RegisterFile::RegisterFile(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX): PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX)
 {
 	for (auto i : Registers)
 		Registers[i] = 0;
@@ -18,7 +18,8 @@ void RegisterFile::read()
 	S1_Data = Registers[S1_Address];
 	S2_Data = Registers[S2_Address];
 
-	//Insert Data to NextBufferPtr
+	NextBufferPtr->setS1Data(S1_Data);
+	NextBufferPtr->setS1Data(S2_Data);
 }
 
 void RegisterFile::write()

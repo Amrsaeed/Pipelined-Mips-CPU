@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdint.h>
 #include "IF_ID_Buffer.h"
+#include "ID_EX_Buffer.h"
 
 
 #ifndef REGISTERFILE_H
@@ -9,13 +10,13 @@
 class RegisterFile
 {
 public:
-	RegisterFile(IF_ID_Buffer*, Buffer*);
+	RegisterFile(IF_ID_Buffer*, ID_EX_Buffer*);
 	void read();
 	void write();
 	void clear();
 private:
 	IF_ID_Buffer* PrevBufferPtr;
-	Buffer* NextBufferPtr;
+	ID_EX_Buffer* NextBufferPtr;
 	uint32_t Registers[32];
 	//bool R_Ens[32];
 	uint32_t Instruction;
