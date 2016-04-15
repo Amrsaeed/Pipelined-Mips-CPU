@@ -10,7 +10,10 @@
 class RegisterFile
 {
 public:
+	RegisterFile();
 	RegisterFile(IF_ID_Buffer*, ID_EX_Buffer*);
+	void InsertPrevBuffer(IF_ID_Buffer*);
+	void InsertNextBuffer(ID_EX_Buffer*);
 	void read();
 	void write();
 	void clear();

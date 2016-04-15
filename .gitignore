@@ -4,3 +4,11 @@ Pipelined-Mips-CPU.sdf
 *.sln
 Pipelined-Mips-CPU/Pipelined-Mips-CPU.vcxproj
 *.filters
+*.tlog
+*.exe
+Debug/Pipelined-Mips-CPU.ilk
+Debug/Pipelined-Mips-CPU.pdb
+*.log
+*.obj
+Pipelined-Mips-CPU/Debug/vc140.idb
+*.pdb

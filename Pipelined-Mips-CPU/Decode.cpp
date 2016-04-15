@@ -1,8 +1,9 @@
 #include "Decode.h"
 
-Decode::Decode(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX) : PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX), RF(new RegisterFile(PrevBufferPtr, NextBufferPtr)), CU(new ControlUnit(PrevBufferPtr, NextBufferPtr))
+Decode::Decode(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX) : PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX)
 {
-
+	RF = new RegisterFile(PrevBufferPtr, NextBufferPtr);
+	CU = new ControlUnit(PrevBufferPtr, NextBufferPtr);
 }
 
 void Decode::Run()

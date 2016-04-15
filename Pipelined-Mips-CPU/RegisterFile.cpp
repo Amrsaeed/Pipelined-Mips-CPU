@@ -1,6 +1,21 @@
 #include <iostream>
 #include "RegisterFile.h"
 
+RegisterFile::RegisterFile()
+{
+
+}
+
+void RegisterFile::InsertPrevBuffer(IF_ID_Buffer* IF_ID)
+{
+
+}
+
+void RegisterFile::InsertNextBuffer(ID_EX_Buffer* ID_EX)
+{
+
+}
+
 RegisterFile::RegisterFile(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX): PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX)
 {
 	clear();
