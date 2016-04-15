@@ -3,9 +3,7 @@
 
 RegisterFile::RegisterFile(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX): PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX)
 {
-	for (auto i : Registers)
-		Registers[i] = 0;
-	
+	clear();
 }
 
 void RegisterFile::read()

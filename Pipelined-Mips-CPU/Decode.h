@@ -10,10 +10,15 @@ class Decode
 {
 public:
 	Decode(IF_ID_Buffer*, ID_EX_Buffer*);
-	void run();
+	void RunAsynchronous();
+	void RunSynchronous();
+	void Run();
 private:
-	RegisterFile RF();
-	ControlUnit CU();
+	RegisterFile* RF;
+	ControlUnit* CU;
+
+	IF_ID_Buffer* PrevBufferPtr;
+	ID_EX_Buffer* NextBufferPtr;
 
 };
 

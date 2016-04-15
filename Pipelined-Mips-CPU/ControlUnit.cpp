@@ -3,6 +3,56 @@
 
 ControlUnit::ControlUnit(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX) : PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX)
 {
+	ClearSignals();
+
+}
+
+void ControlUnit::generateSignals()
+{
+	opCode = (PrevBufferPtr->getInstruction() & 0xFC000000) >> 26;
+	Func = (PrevBufferPtr->getInstruction() & 0x3F);
+
+	switch (opCode)
+	{
+	case 3:
+		generateJAL();
+		break;
+	case 35:
+		generateLW();
+		break;
+	case 43:
+		generateSW();
+		break;
+	case 8:
+		generateADDI();
+		break;
+	case 2:
+		generateJump();
+		break;
+	case 0:
+		switch (Func)
+		{
+		case 32:
+		case 33:
+			generateAdd();
+			break;
+		case 38:
+			generateXOR();
+			break;
+		case 42:
+			generateSLT();
+			break;
+		case 8:
+			generateJR();
+			break;
+		}
+		break;
+
+	}
+}
+
+void ControlUnit::ClearSignals()
+{
 	DataEn = false;
 	ImmEn = false;
 	SECtrl = false;
@@ -14,18 +64,148 @@ ControlUnit::ControlUnit(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX) : PrevBufferP
 	DesSelect = 0;
 	ALUOp = 0;
 	DataDesSelect = 0;
-	S1_Data = 0;
-	S2_Data = 0;
-	PC = 0;
 }
 
-void ControlUnit::generateSignals()
+void ControlUnit::generateAdd()
 {
-	opCode = (PrevBufferPtr->getInstruction() & 0xFC000000) >> 26;
-	Func = (PrevBufferPtr->getInstruction() & 0x3F);
+	DataEn = true;
+	ImmEn = false;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 0;
+	DesSelect = 0;
+	ALUOp = 6;
+	DataDesSelect = 0;
 
-	switch (opCode)
-	{
-		//Call Instruction Generators.
-	}
+}
+
+void ControlUnit::generateADDI()
+{
+
+	DataEn = true;
+	ImmEn = true;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 0;
+	DesSelect = 1;
+	ALUOp = 6;
+	DataDesSelect = 0;
+
+}
+
+void ControlUnit::generateXOR()
+{
+	DataEn = true;
+	ImmEn = false;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 0;
+	DesSelect = 0;
+	ALUOp = 4;
+	DataDesSelect = 0;
+
+}
+
+void ControlUnit::generateLW()
+{
+	DataEn = true;
+	ImmEn = true;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 0;
+	DesSelect = 1;
+	ALUOp = 6;
+	DataDesSelect = 1;
+
+}
+
+void ControlUnit::generateSW()
+{
+	DataEn = false;
+	ImmEn = true;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = true;
+	MemSize = true;
+	MultEn = false;
+	JType = 0;
+	DesSelect = 1;
+	ALUOp = 6;
+	DataDesSelect = 0;
+
+}
+
+void ControlUnit::generateJump()
+{
+	DataEn = false;
+	ImmEn = true;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 2;
+	DesSelect = 0;
+	ALUOp = 0;
+	DataDesSelect = 0;
+	
+}
+
+void ControlUnit::generateSLT()
+{
+	DataEn = true;
+	ImmEn = false;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 0;
+	DesSelect = 0;
+	ALUOp = 7;
+	DataDesSelect = 5;
+
+}
+
+void ControlUnit::generateJAL()
+{
+	DataEn = true;
+	ImmEn = true;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 0;
+	DesSelect = 0;
+	ALUOp = 0;
+	DataDesSelect = 0;
+}
+
+void ControlUnit::generateJR()
+{
+	DataEn = false;
+	ImmEn = false;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 3;
+	DesSelect = 0;
+	ALUOp = 0;
+	DataDesSelect = 4;
+
 }

@@ -20,12 +20,13 @@ public:
 	void setPC(uint32_t);
 	void setDataAddress(uint8_t);
 	void setDestData(uint32_t);
-	bool setDataEn();
+	void setDataEn(bool);
 
 private:
 	uint32_t Instruction;
 	uint32_t PC;
 	uint8_t Data_Address;
+	uint32_t DestData;
 	bool Data_En;
 };
 

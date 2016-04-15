@@ -29,16 +29,13 @@ private:
 	uint8_t DesSelect;
 	uint8_t ALUOp;
 	uint8_t DataDesSelect;
-	uint32_t S1_Data;
-	uint32_t S2_Data;
-	uint32_t PC;
 
 	void generateAdd();
 	void generateADDI();
 	void generateXOR();
 	void generateLW();
 	void generateSW();
-	void generateBLE();
+	//void generateBLE();
 	void generateJump();
 	void generateSLT();
 	void generateJAL();
