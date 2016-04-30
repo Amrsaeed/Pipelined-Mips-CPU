@@ -110,7 +110,7 @@ void ControlUnit::generateXOR()
 	MultEn = false;
 	JType = 0;
 	DesSelect = 0;
-	ALUOp = 4;
+	ALUOp = 2;
 	DataDesSelect = 0;
 
 }
