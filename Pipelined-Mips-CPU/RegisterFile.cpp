@@ -32,7 +32,7 @@ void RegisterFile::read()
 	S2_Data = Registers[S2_Address];
 
 	NextBufferPtr->setS1Data(S1_Data);
-	NextBufferPtr->setS1Data(S2_Data);
+	NextBufferPtr->setS2Data(S2_Data);
 }
 
 void RegisterFile::write()

@@ -49,6 +49,8 @@ void ControlUnit::generateSignals()
 		break;
 
 	}
+
+	setSignals();
 }
 
 void ControlUnit::ClearSignals()
@@ -208,4 +210,19 @@ void ControlUnit::generateJR()
 	ALUOp = 0;
 	DataDesSelect = 4;
 
+}
+
+void ControlUnit::setSignals()
+{
+	NextBufferPtr->setDataEn(DataEn);
+	NextBufferPtr->setImmEn(ImmEn);
+	NextBufferPtr->setSECtrl(SECtrl);
+	NextBufferPtr->setALUOp(ALUOp);
+	NextBufferPtr->setBranchType(BranchType);
+	NextBufferPtr->setMemRW(MemRW);
+	NextBufferPtr->setMemSize(MemSize);
+	NextBufferPtr->setMultEn(MultEn);
+	NextBufferPtr->setJType(JType);
+	NextBufferPtr->setDesSelect(DesSelect);
+	NextBufferPtr->setDataDesSelect(DataDesSelect);
 }

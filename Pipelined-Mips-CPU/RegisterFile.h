@@ -17,10 +17,11 @@ public:
 	void read();
 	void write();
 	void clear();
+	int32_t Registers[32];
 private:
 	IF_ID_Buffer* PrevBufferPtr;
 	ID_EX_Buffer* NextBufferPtr;
-	uint32_t Registers[32];
+	//int32_t Registers[32];
 	//bool R_Ens[32];
 	uint32_t Instruction;
 

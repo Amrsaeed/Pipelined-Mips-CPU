@@ -40,6 +40,7 @@ private:
 	void generateSLT();
 	void generateJAL();
 	void generateJR();
+	void setSignals();
 };
 
 #endif

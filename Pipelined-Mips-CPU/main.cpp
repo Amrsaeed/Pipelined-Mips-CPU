@@ -1,23 +1,11 @@
 #include <iostream>
-#include "Decode.h"
-#include "ID_EX_Buffer.h"
-#include "IF_ID_Buffer.h"
+#include "Processor.h"
 
 int main()
 {
-	IF_ID_Buffer test;
-	ID_EX_Buffer test2;
+	Processor Superman("Test.txt");
 
-	Decode DC(&test, &test2);
-
-	test.setInstruction(536936498);
-	test.setDataEn(1);
-	test.setDestData(5);
-	test.setPC(4);
-	test.setDataAddress(1);
-
-	DC.Run();
-
+	Superman.Start();
 
 	return 0;
 }

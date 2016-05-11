@@ -63,12 +63,12 @@ uint8_t ID_EX_Buffer::getDesAddress()
 	return DesAddress;
 }
 
-uint32_t ID_EX_Buffer::getS1Data()
+int32_t ID_EX_Buffer::getS1Data()
 {
 	return S1_Data;
 }
 
-uint32_t ID_EX_Buffer::getS2Data()
+int32_t ID_EX_Buffer::getS2Data()
 {
 	return S2_Data;
 }
@@ -138,12 +138,12 @@ void ID_EX_Buffer::setDesAddress(uint8_t a)
 	DesAddress = a;
 }
 
-void ID_EX_Buffer::setS1Data(uint32_t a)
+void ID_EX_Buffer::setS1Data(int32_t a)
 {
 	S1_Data = a;
 }
 
-void ID_EX_Buffer::setS2Data(uint32_t a)
+void ID_EX_Buffer::setS2Data(int32_t a)
 {
 	S2_Data = a;
 }

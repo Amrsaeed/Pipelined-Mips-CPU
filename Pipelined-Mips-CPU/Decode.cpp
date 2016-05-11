@@ -22,8 +22,8 @@ void Decode::RunAsynchronous()
 	uint8_t tempSource2 = (PrevBufferPtr->getInstruction() & 0xF8000) >> 16;
 	bool tempSECtrl = NextBufferPtr->getSECtrl();
 	bool tempImmEn = NextBufferPtr->getImmEn();
-	uint32_t extended;
-	uint16_t Immediate = (PrevBufferPtr->getInstruction() & 0xFFFF);
+	int32_t extended;
+	int16_t Immediate = (PrevBufferPtr->getInstruction() & 0xFFFF);
 
 	if (tempDesSelect == 0)
 		NextBufferPtr->setDesAddress(tempSource1);
@@ -41,6 +41,7 @@ void Decode::RunAsynchronous()
 
 	if (tempImmEn == 1)
 		NextBufferPtr->setS2Data(extended);
+
 }
 
 void Decode::RunSynchronous()

@@ -13,8 +13,9 @@ public:
 	void RunAsynchronous();
 	void RunSynchronous();
 	void Run();
-private:
 	RegisterFile* RF;
+private:
+	//RegisterFile* RF;
 	ControlUnit* CU;
 
 	IF_ID_Buffer* PrevBufferPtr;

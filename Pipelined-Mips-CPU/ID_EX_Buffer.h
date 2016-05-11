@@ -22,8 +22,8 @@ public:
 	uint8_t getALUOp();
 	uint8_t getDataDesSelect();
 	uint8_t getDesAddress();
-	uint32_t getS1Data();
-	uint32_t getS2Data();
+	int32_t getS1Data();
+	int32_t getS2Data();
 	uint32_t getPC();
 
 	//Set Methods
@@ -39,8 +39,8 @@ public:
 	void setALUOp(uint8_t);
 	void setDataDesSelect(uint8_t);
 	void setDesAddress(uint8_t);
-	void setS1Data(uint32_t);
-	void setS2Data(uint32_t);
+	void setS1Data(int32_t);
+	void setS2Data(int32_t);
 	void setPC(uint32_t);
 
 private:
@@ -56,8 +56,8 @@ private:
 	uint8_t ALUOp;
 	uint8_t DataDesSelect;
 	uint8_t DesAddress;
-	uint32_t S1_Data;
-	uint32_t S2_Data;
+	int32_t S1_Data;
+	int32_t S2_Data;
 	uint32_t PC;
 };
 
