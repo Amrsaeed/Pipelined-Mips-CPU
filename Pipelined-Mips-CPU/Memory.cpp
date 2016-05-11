@@ -24,6 +24,10 @@ void Memory:: getSignals()
     NextBufferPtr->setS2Data(PrevBufferPtr->getS2Data());
     NextBufferPtr->setPC(PrevBufferPtr->getPC());
 	NextBufferPtr->setALUout(PrevBufferPtr->getALUout());
+	NextBufferPtr->setNeg_flag(PrevBufferPtr->getNeg_flag());
+	NextBufferPtr->setZero_flag(PrevBufferPtr->getZero_flag());
+	NextBufferPtr->setBranch_en(PrevBufferPtr->getBranch_en());
+
 }
 
 void Memory:: setMem_array()

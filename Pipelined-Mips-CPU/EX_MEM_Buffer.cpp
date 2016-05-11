@@ -1,11 +1,3 @@
-//
-//  EX_MEM_Buffer.cpp
-//  project
-//
-//  Created by MacBook Pro on 4/28/16.
-//  Copyright © 2016 MacBook Pro. All rights reserved.
-//
-
 #include "EX_MEM_Buffer.h"
 EX_MEM_Buffer::EX_MEM_Buffer(): Buffer()
 {}
@@ -92,7 +84,7 @@ int32_t EX_MEM_Buffer::getS2Data()
     return S2_Data;
 }
 
-uint32_t EX_MEM_Buffer::getALUout()
+int32_t EX_MEM_Buffer::getALUout()
 {
     return ALUout;
 }
@@ -190,7 +182,7 @@ void EX_MEM_Buffer::setS2Data(int32_t a)
     S2_Data = a;
 }
 
-void EX_MEM_Buffer::setALUout(uint32_t a)
+void EX_MEM_Buffer::setALUout(int32_t a)
 {
     ALUout = a;
 }

@@ -1,10 +1,11 @@
 #include "Fetch.h"
 
-Fetch::Fetch(string Name, F_Buffer* x, IF_ID_Buffer* y, ID_EX_Buffer* z): Path(Name)
+Fetch::Fetch(string Name, F_Buffer* x, IF_ID_Buffer* y, ID_EX_Buffer* z, EX_MEM_Buffer* k): Path(Name)
 {
 	m = x;
 	n = y;
 	l = z;
+	EXMEM_B = k;
 	pc = 0;
 	IM[0] = 0;
 	setIM(Path);
@@ -23,10 +24,15 @@ void Fetch::setIM(string filename)
 	IM[7] = 4274218;
 	IM[8] = 4472874;
 	IM[9] = 2349400064;
+	IM[10] = 134217728;
 }
 
 void Fetch::Run()
 {
+	m->setJtype(l->getJType());
+	m->setBen(EXMEM_B->getBranch_en());
+	m->setBimm(l->getB());
+
 	if (!m->stall)
 	{
 
@@ -36,7 +42,7 @@ void Fetch::Run()
 			pc = m->getBimm();
 		else if (m->getJtype() == 2)
 		{
-			pc = m->getJimm();
+			pc = m->getBimm();
 			m->stall = true;
 		}
 		else
@@ -48,7 +54,6 @@ void Fetch::Run()
 		n->setInstruction(IM[pc/4]);
 		uint32_t temp = IM[pc];
 		m->setnpc(pc + 4);
-		m->setBimm((temp & 0x0000ffff) + pc + 4);
 		temp = (temp << 2);
 		temp |= (0xf0000000 & pc);
 		m->setJimm(temp);

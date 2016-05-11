@@ -3,6 +3,16 @@
 ID_EX_Buffer::ID_EX_Buffer()
 {}
 
+int32_t ID_EX_Buffer::getB()
+{
+	return B;
+}
+
+void ID_EX_Buffer::setB(int32_t a)
+{
+	B = a;
+}
+
 bool ID_EX_Buffer::getDataEn()
 {
 	return DataEn;

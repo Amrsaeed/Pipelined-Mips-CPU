@@ -22,6 +22,9 @@ void Execute:: getSignals()
     NextBufferPtr->setS1Data(PrevBufferPtr->getS1Data());
     NextBufferPtr->setS2Data(PrevBufferPtr->getS2Data());
     NextBufferPtr->setPC(PrevBufferPtr->getPC());
+	NextBufferPtr->setNeg_flag(NextBufferPtr->getALUout() < 0 ? 1 : 0);
+	NextBufferPtr->setZero_flag(NextBufferPtr->getALUout() == 0 ? 1 : 0);
+	NextBufferPtr->setBranch_en(NextBufferPtr->getZero_flag() ^ NextBufferPtr->getBranchType());
    
 }
 
@@ -33,13 +36,13 @@ void Execute::multiply()
 void Execute::ALUOperation()
 {
     if(PrevBufferPtr->getALUOp() == 6)
-        NextBufferPtr->setALUout(PrevBufferPtr->getS1Data()+PrevBufferPtr->getS2Data()); //add
+        NextBufferPtr->setALUout(PrevBufferPtr->getS1Data()+PrevBufferPtr->getB()); //add
     
     else if(PrevBufferPtr->getALUOp() == 2)
-        NextBufferPtr->setALUout(PrevBufferPtr->getS1Data()^ PrevBufferPtr->getS2Data()); //XOR
+        NextBufferPtr->setALUout(PrevBufferPtr->getS1Data()^ PrevBufferPtr->getB()); //XOR
     
     else if(PrevBufferPtr->getALUOp() == 7)
-        NextBufferPtr->setALUout(PrevBufferPtr->getS1Data()- PrevBufferPtr->getS2Data());  //SLT
+        NextBufferPtr->setALUout(PrevBufferPtr->getS1Data()- PrevBufferPtr->getB());  //SLT
 }
 
 void Execute::Run()

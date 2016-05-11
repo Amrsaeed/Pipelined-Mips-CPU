@@ -40,7 +40,9 @@ void Decode::RunAsynchronous()
 		extended = Immediate; //Fix to Sign Extend
 
 	if (tempImmEn == 1)
-		NextBufferPtr->setS2Data(extended);
+		NextBufferPtr->setB(extended);
+	else
+		NextBufferPtr->setB(NextBufferPtr->getS2Data());
 
 }
 

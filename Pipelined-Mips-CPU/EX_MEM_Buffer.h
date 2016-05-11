@@ -42,7 +42,7 @@ public:
     uint8_t getDesAddress();
     int32_t getS1Data();
     int32_t getS2Data();
-    uint32_t getALUout();
+    int32_t getALUout();
     uint32_t getPC();
     int64_t getmult_res();
     
@@ -61,7 +61,7 @@ public:
     void setDesAddress(uint8_t);
     void setS1Data(int32_t);
     void setS2Data(int32_t);
-    void setALUout(uint32_t);
+    void setALUout(int32_t);
     void setPC(uint32_t);
     void setZero_flag( bool);
     void setNeg_flag( bool);
@@ -86,7 +86,7 @@ private:
     uint8_t DesAddress;
     int32_t S1_Data;
     int32_t S2_Data;
-    uint32_t ALUout;
+    int32_t ALUout;
     uint32_t PC;
     int64_t mult_res;
  

@@ -25,6 +25,7 @@ public:
 	int32_t getS1Data();
 	int32_t getS2Data();
 	uint32_t getPC();
+	int32_t getB();
 
 	//Set Methods
 	void setDataEn(bool);
@@ -42,6 +43,7 @@ public:
 	void setS1Data(int32_t);
 	void setS2Data(int32_t);
 	void setPC(uint32_t);
+	void setB(int32_t);
 
 private:
 	bool DataEn;
@@ -59,6 +61,7 @@ private:
 	int32_t S1_Data;
 	int32_t S2_Data;
 	uint32_t PC;
+	int32_t B;
 };
 
 #endif
