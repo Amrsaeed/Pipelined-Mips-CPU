@@ -37,7 +37,7 @@ void Fetch::Run()
 	if (!m->stall)
 	{
 
-		if (m->getJtype() == 0 || (m->getJtype() == 1 && !m->getBen()))
+		if (m->getJtype() == 0 || m->getJtype() == 5 || (m->getJtype() == 1 && !m->getBen()))
 			pc = m->getnpc();
 		else if (m->getJtype() == 1)
 			pc = m->getBimm();

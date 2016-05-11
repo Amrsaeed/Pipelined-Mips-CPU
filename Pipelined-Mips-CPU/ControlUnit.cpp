@@ -94,7 +94,17 @@ void ControlUnit::generateJS()
 
 void ControlUnit::generateJALS()
 {
-
+	DataEn = false;
+	ImmEn = false;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 5;
+	DesSelect = 0;
+	ALUOp = 0;
+	DataDesSelect = 4;
 }
 
 void ControlUnit::generateBEQ()

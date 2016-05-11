@@ -54,7 +54,7 @@ void Decode::RunAsynchronous()
 	{	
 		if (Stack.size() == 0)
 		{
-			std::cerr << "Error! Popping from an empty stack!";
+			std::cerr << "Error! Popping from an empty stack!\n";
 			exit(0);
 		}
 
@@ -62,6 +62,17 @@ void Decode::RunAsynchronous()
 		temp = Stack[Stack.size() - 1];
 		NextBufferPtr->setPC(temp);
 		Stack.pop_back();
+	}
+	else if (NextBufferPtr->getJType() == 5)
+	{
+		if (Stack.size() == 4)
+		{
+			std::cerr << "Error! Stack is Full!\n";
+			exit(0);
+		}
+
+		Stack.push_back(PrevBufferPtr->getPC());
+		NextBufferPtr->setPC(extended);
 	}
 
 }
