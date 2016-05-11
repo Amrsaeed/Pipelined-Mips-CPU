@@ -44,8 +44,25 @@ void Decode::RunAsynchronous()
 	else
 		NextBufferPtr->setB(NextBufferPtr->getS2Data());
 
-	if (NextBufferPtr->getJType() == 3)
+	if (NextBufferPtr->getJType() == 0)
+	{
 		NextBufferPtr->setPC(NextBufferPtr->getS2Data());
+	}
+	else if (NextBufferPtr->getJType() == 3)
+		NextBufferPtr->setPC(NextBufferPtr->getS2Data());
+	else if (NextBufferPtr->getJType() == 4)
+	{	
+		if (Stack.size() == 0)
+		{
+			std::cerr << "Error! Popping from an empty stack!";
+			exit(0);
+		}
+
+		int32_t temp;
+		temp = Stack[Stack.size() - 1];
+		NextBufferPtr->setPC(temp);
+		Stack.pop_back();
+	}
 
 }
 

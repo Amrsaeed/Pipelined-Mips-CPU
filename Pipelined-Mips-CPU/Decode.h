@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "ID_EX_Buffer.h"
 #include "RegisterFile.h"
 #include "ControlUnit.h"
@@ -20,6 +21,8 @@ private:
 
 	IF_ID_Buffer* PrevBufferPtr;
 	ID_EX_Buffer* NextBufferPtr;
+
+	std::vector<int32_t> Stack;
 
 };
 

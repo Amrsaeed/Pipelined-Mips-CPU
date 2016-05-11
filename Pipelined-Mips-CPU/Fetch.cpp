@@ -24,7 +24,7 @@ void Fetch::setIM(string filename)
 	IM[7] = 4274218;
 	IM[8] = 4472874;
 	IM[9] = 2349400064;
-	IM[10] = 8388616;
+	IM[10] = 272957440;
 }
 
 void Fetch::Run()
@@ -46,11 +46,12 @@ void Fetch::Run()
 			pc = m->getBimm();
 			m->stall = true;
 		}
-		else
+		else if (m->getJtype() == 3 || m->getJtype() == 4)
 		{
 			pc = m->getjr();
 			m->stall = true;
 		}
+
 		n->setPC(pc);
 		n->setInstruction(IM[pc/4]);
 		uint32_t temp = IM[pc];

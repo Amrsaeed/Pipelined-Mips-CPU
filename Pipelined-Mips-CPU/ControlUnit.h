@@ -35,12 +35,14 @@ private:
 	void generateXOR();
 	void generateLW();
 	void generateSW();
-	//void generateBLE();
 	void generateJump();
 	void generateSLT();
 	void generateJAL();
 	void generateJR();
 	void setSignals();
+	void generateBEQ();
+	void generateJALS();
+	void generateJS();
 };
 
 #endif

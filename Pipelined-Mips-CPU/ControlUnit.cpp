@@ -26,8 +26,17 @@ void ControlUnit::generateSignals()
 	case 8:
 		generateADDI();
 		break;
+	case 4:
+		generateBEQ();
+		break;
 	case 2:
 		generateJump();
+		break;
+	case 60:
+		generateJALS();
+		break;
+	case 61:
+		generateJS();
 		break;
 	case 0:
 		switch (Func)
@@ -66,6 +75,42 @@ void ControlUnit::ClearSignals()
 	DesSelect = 0;
 	ALUOp = 0;
 	DataDesSelect = 0;
+}
+
+void ControlUnit::generateJS()
+{
+	DataEn = false;
+	ImmEn = false;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 4;
+	DesSelect = 0;
+	ALUOp = 0;
+	DataDesSelect = 4;
+}
+
+void ControlUnit::generateJALS()
+{
+
+}
+
+void ControlUnit::generateBEQ()
+{
+	DataEn = false;
+	ImmEn = true;
+	SECtrl = false;
+	BranchType = false;
+	MemRW = false;
+	MemSize = true;
+	MultEn = false;
+	JType = 1;
+	DesSelect = 0;
+	ALUOp = 7;
+	DataDesSelect = 1;
+
 }
 
 void ControlUnit::generateAdd()

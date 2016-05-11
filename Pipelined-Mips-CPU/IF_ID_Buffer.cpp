@@ -13,6 +13,11 @@ uint32_t IF_ID_Buffer::getPC()
 	return PC;
 }
 
+uint32_t IF_ID_Buffer::getnPC()
+{
+	return nPC;
+}
+
 uint8_t IF_ID_Buffer::getDataAddress()
 {
 	return Data_Address;
@@ -36,6 +41,11 @@ void IF_ID_Buffer::setInstruction(uint32_t a)
 void IF_ID_Buffer::setPC(uint32_t a)
 {
 	PC = a;
+}
+
+void IF_ID_Buffer::setnPC(uint32_t a)
+{
+	nPC = a;
 }
 
 void IF_ID_Buffer::setDataAddress(uint8_t a)

@@ -88,6 +88,11 @@ uint32_t ID_EX_Buffer::getPC()
 	return PC;
 }
 
+uint32_t ID_EX_Buffer::getnPC()
+{
+	return nPC;
+}
+
 void ID_EX_Buffer::setDataEn(bool a)
 {
 	DataEn = a;
@@ -161,4 +166,9 @@ void ID_EX_Buffer::setS2Data(int32_t a)
 void ID_EX_Buffer::setPC(uint32_t a)
 {
 	PC = a;
+}
+
+void ID_EX_Buffer::setnPC(uint32_t a)
+{
+	nPC = a;
 }
