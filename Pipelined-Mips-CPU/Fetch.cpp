@@ -24,7 +24,7 @@ void Fetch::setIM(string filename)
 	IM[7] = 4274218;
 	IM[8] = 4472874;
 	IM[9] = 2349400064;
-	IM[10] = 134217728;
+	IM[10] = 8388616;
 }
 
 void Fetch::Run()
@@ -32,6 +32,7 @@ void Fetch::Run()
 	m->setJtype(l->getJType());
 	m->setBen(EXMEM_B->getBranch_en());
 	m->setBimm(l->getB());
+	m->setjr(l->getPC());
 
 	if (!m->stall)
 	{

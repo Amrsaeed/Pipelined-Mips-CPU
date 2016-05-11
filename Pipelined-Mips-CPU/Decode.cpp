@@ -44,6 +44,9 @@ void Decode::RunAsynchronous()
 	else
 		NextBufferPtr->setB(NextBufferPtr->getS2Data());
 
+	if (NextBufferPtr->getJType() == 3)
+		NextBufferPtr->setPC(NextBufferPtr->getS2Data());
+
 }
 
 void Decode::RunSynchronous()
