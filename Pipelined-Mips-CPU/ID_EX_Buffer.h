@@ -24,6 +24,8 @@ public:
 	uint8_t getDesAddress();
 	int32_t getS1Data();
 	int32_t getS2Data();
+	int32_t getS1Add();
+	int32_t getS2Add();
 	uint32_t getPC();
 	uint32_t getnPC();
 	int32_t getB();
@@ -43,6 +45,8 @@ public:
 	void setDesAddress(uint8_t);
 	void setS1Data(int32_t);
 	void setS2Data(int32_t);
+	void setS1Add(int32_t);
+	void setS2Add(int32_t);
 	void setPC(uint32_t);
 	void setnPC(uint32_t);
 	void setB(int32_t);
@@ -62,6 +66,8 @@ private:
 	uint8_t DesAddress;
 	int32_t S1_Data;
 	int32_t S2_Data;
+	int32_t S1Add;
+	int32_t S2Add;
 	uint32_t PC;
 	uint32_t nPC;
 	int32_t B;

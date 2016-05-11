@@ -245,7 +245,7 @@ void ControlUnit::generateJAL()
 	MemRW = false;
 	MemSize = true;
 	MultEn = false;
-	JType = 0;
+	JType = 2;
 	DesSelect = 0;
 	ALUOp = 0;
 	DataDesSelect = 0;

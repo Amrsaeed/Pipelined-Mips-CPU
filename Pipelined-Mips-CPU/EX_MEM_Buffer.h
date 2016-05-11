@@ -45,6 +45,8 @@ public:
     int32_t getALUout();
     uint32_t getPC();
     int64_t getmult_res();
+	int32_t getS1Add();
+	int32_t getS2Add();
     
     //Set Methods
     void setDataEn(bool);
@@ -67,7 +69,8 @@ public:
     void setNeg_flag( bool);
     void setBranch_en( bool);
     void setmult_res (int64_t);
-    
+	void setS1Add(int32_t);
+	void setS2Add(int32_t);
 private:
     bool DataEn;
     bool ImmEn;
@@ -89,6 +92,8 @@ private:
     int32_t ALUout;
     uint32_t PC;
     int64_t mult_res;
+	int32_t S1Add;
+	int32_t S2Add;
  
 };
 

@@ -28,6 +28,9 @@ void RegisterFile::read()
 	S1_Address = ((Instruction & 0x3E00000) >> 21);
 	S2_Address = ((Instruction & 0x1F0000) >> 16);
 
+	NextBufferPtr->setS1Add(S1_Address);
+	NextBufferPtr->setS2Add(S2_Address);
+
 	S1_Data = Registers[S1_Address];
 	S2_Data = Registers[S2_Address];
 

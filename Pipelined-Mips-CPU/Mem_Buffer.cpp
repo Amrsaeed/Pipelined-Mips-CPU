@@ -11,6 +11,27 @@
 Mem_Buffer::Mem_Buffer(): Buffer()
 {}
 
+int32_t Mem_Buffer::getS1Add()
+{
+	return S1Add;
+}
+
+int32_t Mem_Buffer::getS2Add()
+{
+	return S2Add;
+}
+
+void Mem_Buffer::setS1Add(int32_t a)
+{
+	S1Add = a;
+}
+
+void Mem_Buffer::setS2Add(int32_t a)
+{
+	S2Add = a;
+}
+
+
 bool Mem_Buffer::getDataEn()
 {
     return DataEn;

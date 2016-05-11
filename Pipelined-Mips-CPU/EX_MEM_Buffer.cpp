@@ -2,6 +2,28 @@
 EX_MEM_Buffer::EX_MEM_Buffer(): Buffer()
 {}
 
+
+int32_t EX_MEM_Buffer::getS1Add()
+{
+	return S1Add;
+}
+
+
+int32_t EX_MEM_Buffer::getS2Add()
+{
+	return S2Add;
+}
+
+void EX_MEM_Buffer::setS1Add(int32_t a)
+{
+	S1Add = a;
+}
+
+void EX_MEM_Buffer::setS2Add(int32_t a)
+{
+	S2Add = a;
+}
+
 bool EX_MEM_Buffer::getDataEn()
 {
     return DataEn;

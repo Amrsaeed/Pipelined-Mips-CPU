@@ -1,6 +1,6 @@
 #include "Execute.h"
 
-Execute:: Execute(ID_EX_Buffer* ID_EX, EX_MEM_Buffer* EX_MEM) : PrevBufferPtr(ID_EX), NextBufferPtr(EX_MEM)
+Execute:: Execute(ID_EX_Buffer* ID_EX, EX_MEM_Buffer* EX_MEM, Mem_Buffer* MEMB) : PrevBufferPtr(ID_EX), NextBufferPtr(EX_MEM), MemBuffer(MEMB)
 {
     
 }
@@ -36,17 +36,52 @@ void Execute::multiply()
 void Execute::ALUOperation()
 {
     if(PrevBufferPtr->getALUOp() == 6)
-        NextBufferPtr->setALUout(PrevBufferPtr->getS1Data()+PrevBufferPtr->getB()); //add
+        NextBufferPtr->setALUout(Operand1 + Operand2); //add
     
     else if(PrevBufferPtr->getALUOp() == 2)
-        NextBufferPtr->setALUout(PrevBufferPtr->getS1Data()^ PrevBufferPtr->getB()); //XOR
+        NextBufferPtr->setALUout(Operand1 ^ Operand2); //XOR
     
     else if(PrevBufferPtr->getALUOp() == 7)
-        NextBufferPtr->setALUout(PrevBufferPtr->getS1Data()- PrevBufferPtr->getB());  //SLT
+        NextBufferPtr->setALUout(Operand1 - Operand2);  //SLT
+}
+
+void Execute::Forwarding()
+{
+	int ForwardA = 0;
+	int ForwardB = 0;
+
+	if (NextBufferPtr->getDataEn() == 1 && NextBufferPtr->getDesAddress() == PrevBufferPtr->getS1Add())
+		ForwardA = 2;
+
+	if (NextBufferPtr->getDataEn() == 1 && NextBufferPtr->getDesAddress() == PrevBufferPtr->getS2Add())
+		ForwardB = 2;
+
+	if (MemBuffer->getDataEn() == 1 && MemBuffer->getDesAddress() == PrevBufferPtr->getS1Add() &&
+		(NextBufferPtr->getDesAddress() != PrevBufferPtr->getS1Add() || NextBufferPtr->getDataEn() == 0))
+		ForwardA = 1;
+
+	if (MemBuffer->getDataEn() == 1 && MemBuffer->getDesAddress() == PrevBufferPtr->getS2Add() &&
+		(NextBufferPtr->getDesAddress() != PrevBufferPtr->getS2Add() || NextBufferPtr->getDataEn() == 0))
+		ForwardB = 1;
+
+	if (ForwardA == 0)
+		Operand1 = PrevBufferPtr->getS1Data();
+	else if (ForwardA == 1)
+		Operand1 = NextBufferPtr->getALUout();
+	else if (ForwardA == 2)
+		Operand1 = MemBuffer->getALUout();
+
+	if (ForwardB == 0)
+		Operand2 = PrevBufferPtr->getB();
+	else if (ForwardB == 1)
+		Operand2 = NextBufferPtr->getALUout();
+	else if (ForwardB == 2)
+		Operand2 = MemBuffer->getALUout();
 }
 
 void Execute::Run()
 {
+	Forwarding();
 	multiply();
 	ALUOperation();
 	getSignals();

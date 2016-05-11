@@ -83,6 +83,27 @@ int32_t ID_EX_Buffer::getS2Data()
 	return S2_Data;
 }
 
+int32_t ID_EX_Buffer::getS1Add()
+{
+	return S1Add;
+}
+
+
+int32_t ID_EX_Buffer::getS2Add()
+{
+	return S2Add;
+}
+
+void ID_EX_Buffer::setS1Add(int32_t a)
+{
+	S1Add = a;
+}
+
+void ID_EX_Buffer::setS2Add(int32_t a)
+{
+	S2Add = a;
+}
+
 uint32_t ID_EX_Buffer::getPC()
 {
 	return PC;
@@ -162,6 +183,7 @@ void ID_EX_Buffer::setS2Data(int32_t a)
 {
 	S2_Data = a;
 }
+
 
 void ID_EX_Buffer::setPC(uint32_t a)
 {
