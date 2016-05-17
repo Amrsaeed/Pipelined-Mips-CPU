@@ -23,6 +23,21 @@ private:
 	uint32_t getMem_array();
 
 	int WriteData;
+
+	bool OldDataEn1 = false;
+	bool OldDataEn2;
+
+	uint8_t OldDesAddress1 = 0;
+	uint8_t OldDesAddress2;
+
+	int32_t OldMemOut1 = 0;
+	uint32_t OldALUout1 = 0;
+	uint32_t OldOPcode1 = 0;
+
+	int32_t OldMemOut2;
+	uint32_t OldALUout2;
+	uint32_t OldOPcode2;
+
 	void getSignals();
 	void setMem_array();
 

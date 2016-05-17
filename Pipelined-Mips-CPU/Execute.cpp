@@ -54,30 +54,30 @@ void Execute::Forwarding()
 	if (NextBufferPtr->getDataEn() == 1 && NextBufferPtr->getDesAddress() == PrevBufferPtr->getS1Add())
 		ForwardA = 2;
 
-	if (NextBufferPtr->getDataEn() == 1 && NextBufferPtr->getDesAddress() == PrevBufferPtr->getS2Add())
+	if (NextBufferPtr->getDataEn() == 1 && NextBufferPtr->getDesAddress() == PrevBufferPtr->getS2Add() && NextBufferPtr->getOPcode() == 0)
 		ForwardB = 2;
 
-	if (MemBuffer->getDataEn() == 1 && (MemBuffer->getDesAddress() == PrevBufferPtr->getS1Add()) &&
+	if (OldMemory.getDataEn() == 1 && (OldMemory.getDesAddress() == PrevBufferPtr->getS1Add()) &&
 		(NextBufferPtr->getDesAddress() != PrevBufferPtr->getS1Add() || NextBufferPtr->getDataEn() == 0))
 		ForwardA = 1;
 
-	if (MemBuffer->getDataEn() == 1 &&( MemBuffer->getDesAddress() == PrevBufferPtr->getS2Add()) &&
-		(NextBufferPtr->getDesAddress() != PrevBufferPtr->getS2Add() || NextBufferPtr->getDataEn() == 0))
+	if (OldMemory.getDataEn() == 1 &&(OldMemory.getDesAddress() == PrevBufferPtr->getS2Add()) &&
+		(NextBufferPtr->getDesAddress() != PrevBufferPtr->getS2Add() || NextBufferPtr->getDataEn() == 0) && OldMemory.getOPcode() == 0)
 		ForwardB = 1;
 
 	if (ForwardA == 0)
 		Operand1 = PrevBufferPtr->getS1Data();
 	else if (ForwardA == 1)
-		Operand1 = NextBufferPtr->getALUout();
+		Operand1 = OldMemory.getALUout();
 	else if (ForwardA == 2)
-		Operand1 = MemBuffer->getALUout();
+		Operand1 = NextBufferPtr->getALUout();
 
 	if (ForwardB == 0)
 		Operand2 = PrevBufferPtr->getB();
 	else if (ForwardB == 1)
-		Operand2 = NextBufferPtr->getALUout();
+		Operand2 = OldMemory.getALUout();
 	else if (ForwardB == 2)
-		Operand2 = MemBuffer->getALUout();
+		Operand2 = NextBufferPtr->getALUout();
 }
 
 void Execute::Run()
@@ -86,4 +86,5 @@ void Execute::Run()
 	multiply();
 	ALUOperation();
 	getSignals();
+	OldMemory = *MemBuffer;
 }

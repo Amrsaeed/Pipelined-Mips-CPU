@@ -11,6 +11,34 @@
 Mem_Buffer::Mem_Buffer(): Buffer()
 {}
 
+void Mem_Buffer::operator=(const Mem_Buffer& a)
+{
+	DataEn = a.DataEn;
+	ImmEn = a.ImmEn;
+	SECtrl = a.SECtrl;
+	BranchType = a.BranchType;
+	MemRW = a.MemRW;
+	MemSize = a.MemSize;
+	MultEn = a.MultEn;
+	zero_flag = a.zero_flag;
+	neg_flag = a. neg_flag;
+	Branch_en = a.Branch_en;
+	JType = a.JType;
+	DesSelect = a.DesSelect;
+	ALUOp = a.ALUOp;
+	DataDesSelect = a.DataDesSelect;
+	DesAddress = a.DesAddress;
+	S1_Data = a.S1_Data;
+	S2_Data = a.S2_Data;
+	ALUout = a.ALUout;
+	PC = a.PC;
+	mult_res = a.mult_res;
+	MemOut = a.MemOut;
+	S1Add = a.S1Add;
+	S2Add = a.S2Add;
+	OPcode = a.OPcode;
+}
+
 int32_t Mem_Buffer::getS1Add()
 {
 	return S1Add;

@@ -12,7 +12,7 @@ class Fetch
 {
 private:
 	int pc;
-	int IM[32];
+	unsigned int IM[32];
 	F_Buffer* m;
 	IF_ID_Buffer* n;
 	ID_EX_Buffer* l;

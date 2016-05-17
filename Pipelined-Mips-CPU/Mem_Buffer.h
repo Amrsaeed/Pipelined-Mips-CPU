@@ -14,6 +14,7 @@ class Mem_Buffer : public Buffer
 {
 public:
     Mem_Buffer();
+	void operator=(const Mem_Buffer&);
     
     //Get Methods
     bool getDataEn();

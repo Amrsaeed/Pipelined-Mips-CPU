@@ -22,6 +22,7 @@ private:
     EX_MEM_Buffer* NextBufferPtr;
 	Mem_Buffer* MemBuffer;
 
+	Mem_Buffer OldMemory;
 	void multiply();
 	void ALUOperation();
 	void getSignals();

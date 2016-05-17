@@ -53,16 +53,25 @@ void Memory:: MemWrite()
 
 void Memory::Forwarding()
 {
-	bool Forward = false;
+	int Forward = 0;
 
 	if (PrevBufferPtr->getMemRW() && (PrevBufferPtr->getDesAddress() == NextBufferPtr->getDesAddress()) && NextBufferPtr->getDataEn())
-		Forward = true;
+		Forward = 1;
 
-	if (Forward)
+	if (PrevBufferPtr->getMemRW() && (PrevBufferPtr->getDesAddress() == OldDesAddress2) && OldDataEn2 &&
+		(NextBufferPtr->getDesAddress() != PrevBufferPtr->getDesAddress() || NextBufferPtr->getDataEn() == 0))
+		Forward = 2;
+
+	if (Forward == 1)
 		if (NextBufferPtr->getOPcode() == 35)
 			WriteData = NextBufferPtr->getMemOut();
 		else
 			WriteData = NextBufferPtr->getALUout();
+	else if(Forward == 2)
+		if (OldOPcode2 == 35)
+			WriteData = OldMemOut2;
+		else
+			WriteData = OldALUout2;
 	else
 		WriteData = PrevBufferPtr->getS2Data();
 
@@ -73,5 +82,18 @@ void Memory:: Run()
 	Forwarding();
     getSignals();
     MemWrite();
-    
+
+
+	OldDesAddress2 = OldDesAddress1;
+	OldDataEn2 = OldDataEn1;
+	OldALUout2 = OldALUout1;
+	OldMemOut2 = OldMemOut1;
+	OldOPcode2 = OldOPcode1;
+
+	OldDesAddress1 = NextBufferPtr->getDesAddress();
+	OldDataEn1 = NextBufferPtr->getDataEn();
+	OldALUout1 = NextBufferPtr->getALUout();
+	OldMemOut1 = NextBufferPtr->getMemOut();
+	OldOPcode1 = NextBufferPtr->getOPcode();
+
 }

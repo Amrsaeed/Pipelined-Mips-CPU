@@ -29,10 +29,10 @@ void Fetch::setIM(string filename)
 	//IM[12] = 272957440;
 
 	IM[0] = 536936498;
-	//IM[1] = 537002034;
-	IM[1] = 2885746688;
-	IM[2] = 2348941312;
-	IM[3] = 2885812224;
+	IM[1] = 537002034;
+	IM[2] = 2885746688;
+	IM[3] = 2348941312;
+	IM[4] = 2885812224;
 }
 
 void Fetch::Run()
@@ -62,7 +62,7 @@ void Fetch::Run()
 
 		n->setPC(pc);
 		n->setInstruction(IM[pc/4]);
-		uint32_t temp = IM[pc];
+		uint32_t temp = IM[pc/4];
 		m->setnpc(pc + 4);
 		temp = (temp << 2);
 		temp |= (0xf0000000 & pc);
