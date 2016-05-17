@@ -29,8 +29,10 @@ public:
 	uint32_t getPC();
 	uint32_t getnPC();
 	int32_t getB();
+	uint32_t getOPcode();
 
 	//Set Methods
+	void setOPcode(uint32_t);
 	void setDataEn(bool);
 	void setImmEn(bool);
 	void setSECtrl(bool);
@@ -71,6 +73,8 @@ private:
 	uint32_t PC;
 	uint32_t nPC;
 	int32_t B;
+	uint32_t OPcode;
+
 };
 
 #endif

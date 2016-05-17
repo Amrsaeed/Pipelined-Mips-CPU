@@ -94,6 +94,16 @@ int32_t ID_EX_Buffer::getS2Add()
 	return S2Add;
 }
 
+uint32_t ID_EX_Buffer:: getOPcode()
+{
+	return OPcode;
+}
+
+void ID_EX_Buffer::setOPcode(uint32_t opc)
+{
+	OPcode = opc;
+}
+
 void ID_EX_Buffer::setS1Add(int32_t a)
 {
 	S1Add = a;

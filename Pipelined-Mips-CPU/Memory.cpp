@@ -27,12 +27,13 @@ void Memory:: getSignals()
 	NextBufferPtr->setNeg_flag(PrevBufferPtr->getNeg_flag());
 	NextBufferPtr->setZero_flag(PrevBufferPtr->getZero_flag());
 	NextBufferPtr->setBranch_en(PrevBufferPtr->getBranch_en());
+	NextBufferPtr->setOPcode(PrevBufferPtr->getOPcode());
 
 }
 
 void Memory:: setMem_array()
 {
-    Mem_array[(PrevBufferPtr->getALUout()&4092)>>2] = PrevBufferPtr->getS2Data();
+	Mem_array[(PrevBufferPtr->getALUout() & 4092) >> 2] = WriteData;
 }
 
 uint32_t Memory:: getMem_array()
@@ -50,8 +51,26 @@ void Memory:: MemWrite()
 
 }
 
-void Memory:: Run()
+void Memory::Forwarding()
 {
+	bool Forward = false;
+
+	if (PrevBufferPtr->getMemRW() && (PrevBufferPtr->getDesAddress() == NextBufferPtr->getDesAddress()) && NextBufferPtr->getDataEn())
+		Forward = true;
+
+	if (Forward)
+		if (NextBufferPtr->getOPcode() == 35)
+			WriteData = NextBufferPtr->getMemOut();
+		else
+			WriteData = NextBufferPtr->getALUout();
+	else
+		WriteData = PrevBufferPtr->getS2Data();
+
+}
+
+void Memory:: Run()
+{	
+	Forwarding();
     getSignals();
     MemWrite();
     

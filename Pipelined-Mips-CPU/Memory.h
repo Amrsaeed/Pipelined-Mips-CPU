@@ -18,10 +18,14 @@ public:
 private:
     EX_MEM_Buffer* PrevBufferPtr;
     Mem_Buffer* NextBufferPtr;
-    void getSignals();
     void MemWrite();
-    void setMem_array();
-    uint32_t getMem_array ();
+	void Forwarding();
+	uint32_t getMem_array();
+
+	int WriteData;
+	void getSignals();
+	void setMem_array();
+
     
    uint32_t Mem_array[10];
     

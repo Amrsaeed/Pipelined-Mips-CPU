@@ -12,6 +12,8 @@ void ControlUnit::generateSignals()
 	opCode = (PrevBufferPtr->getInstruction() & 0xFC000000) >> 26;
 	Func = (PrevBufferPtr->getInstruction() & 0x3F);
 
+	NextBufferPtr->setOPcode(opCode);
+
 	switch (opCode)
 	{
 	case 3:

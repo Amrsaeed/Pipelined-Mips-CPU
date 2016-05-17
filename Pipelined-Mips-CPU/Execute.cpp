@@ -25,6 +25,7 @@ void Execute:: getSignals()
 	NextBufferPtr->setNeg_flag(NextBufferPtr->getALUout() < 0 ? 1 : 0);
 	NextBufferPtr->setZero_flag(NextBufferPtr->getALUout() == 0 ? 1 : 0);
 	NextBufferPtr->setBranch_en(NextBufferPtr->getZero_flag() ^ NextBufferPtr->getBranchType());
+	NextBufferPtr->setOPcode(PrevBufferPtr->getOPcode());
    
 }
 
@@ -56,11 +57,11 @@ void Execute::Forwarding()
 	if (NextBufferPtr->getDataEn() == 1 && NextBufferPtr->getDesAddress() == PrevBufferPtr->getS2Add())
 		ForwardB = 2;
 
-	if (MemBuffer->getDataEn() == 1 && MemBuffer->getDesAddress() == PrevBufferPtr->getS1Add() &&
+	if (MemBuffer->getDataEn() == 1 && (MemBuffer->getDesAddress() == PrevBufferPtr->getS1Add()) &&
 		(NextBufferPtr->getDesAddress() != PrevBufferPtr->getS1Add() || NextBufferPtr->getDataEn() == 0))
 		ForwardA = 1;
 
-	if (MemBuffer->getDataEn() == 1 && MemBuffer->getDesAddress() == PrevBufferPtr->getS2Add() &&
+	if (MemBuffer->getDataEn() == 1 &&( MemBuffer->getDesAddress() == PrevBufferPtr->getS2Add()) &&
 		(NextBufferPtr->getDesAddress() != PrevBufferPtr->getS2Add() || NextBufferPtr->getDataEn() == 0))
 		ForwardB = 1;
 

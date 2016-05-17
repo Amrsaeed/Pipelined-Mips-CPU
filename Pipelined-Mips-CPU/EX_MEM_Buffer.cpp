@@ -24,6 +24,16 @@ void EX_MEM_Buffer::setS2Add(int32_t a)
 	S2Add = a;
 }
 
+void EX_MEM_Buffer::setOPcode(uint32_t opc)
+{
+	OPcode = opc;
+}
+
+uint32_t EX_MEM_Buffer::getOPcode()
+{
+	return OPcode;
+}
+
 bool EX_MEM_Buffer::getDataEn()
 {
     return DataEn;

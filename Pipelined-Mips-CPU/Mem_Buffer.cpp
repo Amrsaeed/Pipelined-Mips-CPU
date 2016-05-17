@@ -135,6 +135,16 @@ int32_t Mem_Buffer::getMemOut()
 	return MemOut;
 }
 
+uint32_t Mem_Buffer::getOPcode()
+{
+	return OPcode;
+}
+
+void Mem_Buffer::setOPcode(uint32_t opc)
+{
+	OPcode = opc;
+}
+
 void Mem_Buffer::setDataEn(bool a)
 {
     DataEn = a;

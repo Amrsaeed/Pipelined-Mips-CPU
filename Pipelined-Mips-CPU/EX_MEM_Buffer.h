@@ -47,8 +47,10 @@ public:
     int64_t getmult_res();
 	int32_t getS1Add();
 	int32_t getS2Add();
-    
-    //Set Methods
+	uint32_t getOPcode();
+
+	//Set Methods
+	void setOPcode(uint32_t);
     void setDataEn(bool);
     void setImmEn(bool);
     void setSECtrl(bool);
@@ -94,6 +96,8 @@ private:
     int64_t mult_res;
 	int32_t S1Add;
 	int32_t S2Add;
+	uint32_t OPcode;
+
  
 };
 

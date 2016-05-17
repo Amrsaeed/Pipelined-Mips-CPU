@@ -39,8 +39,10 @@ public:
 	int32_t getMemOut();
 	int32_t getS1Add();
 	int32_t getS2Add();
+	uint32_t getOPcode();
     
     //Set Methods
+	void setOPcode(uint32_t);
     void setDataEn(bool);
     void setImmEn(bool);
     void setSECtrl(bool);
@@ -89,6 +91,7 @@ private:
 	int32_t MemOut;
 	int32_t S1Add;
 	int32_t S2Add;
+	uint32_t OPcode;
     
 };
 
