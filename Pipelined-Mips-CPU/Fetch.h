@@ -22,6 +22,7 @@ private:
 	void setIM(std::string filename);
 public:
 	Fetch(string, F_Buffer* x, IF_ID_Buffer* y, ID_EX_Buffer* z, EX_MEM_Buffer*);
+	int getPC();
 	void Run();
 };
 

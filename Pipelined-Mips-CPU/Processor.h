@@ -32,6 +32,8 @@ private:
 	Memory* DataMemory;
 	WriteBack* WB;
 
+	friend class Branch_Predict;
+
 public:
 	Processor(std::string);
 	void Start();

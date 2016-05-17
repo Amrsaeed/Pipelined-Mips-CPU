@@ -75,3 +75,8 @@ void Fetch::Run()
 		n->setInstruction(IM[0]);
 	}
 }
+
+int Fetch::getPC()
+{
+	return pc;
+}
