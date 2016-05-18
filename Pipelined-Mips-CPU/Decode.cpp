@@ -1,8 +1,8 @@
 #include "Decode.h"
 
-Decode::Decode(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX) : PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX)
+Decode::Decode(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX, F_Buffer* F_B, EX_MEM_Buffer* EXM) : PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX), FB(F_B), EXMEM_B(EXM)
 {
-	RF = new RegisterFile(PrevBufferPtr, NextBufferPtr);
+	RF = new RegisterFile(PrevBufferPtr, NextBufferPtr, F_B);
 	CU = new ControlUnit(PrevBufferPtr, NextBufferPtr);
 }
 
@@ -16,6 +16,24 @@ void Decode::RunAsynchronous()
 {
 	RF->read();
 	CU->generateSignals();
+
+	int32_t DataA;
+	int32_t DataB;
+
+	if ((NextBufferPtr->getS1Add() == EXMEM_B->getDesAddress()) && EXMEM_B->getDataEn())
+		DataA = EXMEM_B->getALUout();
+	else
+		DataA = NextBufferPtr->getS1Data();
+
+	if ((NextBufferPtr->getS2Add() == EXMEM_B->getDesAddress()) && EXMEM_B->getDataEn())
+		DataB = EXMEM_B->getALUout();
+	else
+		DataB = NextBufferPtr->getS2Data();
+
+	if ((DataA&(1<<31)) == (DataB&(1<<31)))
+		FB->setBen(1);
+	else
+		FB->setBen(0);
 
 	uint8_t tempDesSelect = NextBufferPtr->getDesSelect();
 	uint8_t tempSource1 = (PrevBufferPtr->getInstruction() & 0x7C00) >> 11;

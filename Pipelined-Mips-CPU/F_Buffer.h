@@ -29,6 +29,7 @@ public:
 	uint32_t getjr() const;
 	uint32_t getnpc() const;
 	uint8_t getBen() const;
+	void setall(uint32_t);
 
 };
 

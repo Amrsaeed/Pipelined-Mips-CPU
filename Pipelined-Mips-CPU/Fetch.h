@@ -2,6 +2,7 @@
 #define FETCH_H
 #include <fstream>
 #include <string>
+#include <vector>
 #include "IF_ID_Buffer.h"
 #include "ID_EX_Buffer.h"
 #include "EX_MEM_Buffer.h"
@@ -17,11 +18,11 @@ private:
 	IF_ID_Buffer* n;
 	ID_EX_Buffer* l;
 	EX_MEM_Buffer* EXMEM_B;
-	string Path;
+	vector<string> Path;
 
-	void setIM(std::string filename);
+	void setIM();
 public:
-	Fetch(string, F_Buffer* x, IF_ID_Buffer* y, ID_EX_Buffer* z, EX_MEM_Buffer*);
+	Fetch(vector<string>, F_Buffer* x, IF_ID_Buffer* y, ID_EX_Buffer* z, EX_MEM_Buffer*);
 	int getPC();
 	void Run();
 };

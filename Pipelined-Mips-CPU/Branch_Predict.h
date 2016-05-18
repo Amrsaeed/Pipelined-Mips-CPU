@@ -2,41 +2,24 @@
 #define BRANCH_PREDICT_H
 
 #include <map>
-#include "Processor.h"
+#include "Fetch.h"
+#include "F_Buffer.h"
+#include "IF_ID_Buffer.h"
 
 class Branch_Predict
 {
 private:
-	Processor* a;
+	Fetch* Fetcher;
+	F_Buffer* F_B;
+	IF_ID_Buffer* IFID_B;
 	map<int, pair<int, int>> npc;
-	int last, cyc, temp;
+	map<int, int> wrong;
+	int last, cyc;
+	bool branching;
 
 public:
-	void predect()
-	{
-		if (a->F_B.getJtype() == 1)
-		{
-			cyc = 0;
-			last = (a->Fetcher->getPC());
-			temp = a->F_B.getnpc();
-			if (npc.find(last) == npc.end())
-				npc[a->Fetcher->getPC()] = { a->F_B.getBimm() , 0 };
-			else
-				a->F_B.setBimm(npc[a->Fetcher->getPC()].first);
-		}
-		if (cyc == 1)
-		{
-			if (!a->F_B.getBen())
-			{
-				npc[last].second++;
-				a->IFID_B.kill();
-				a->F_B.setall(temp);
-			}
-			if (npc[last].second == 2)
-				npc[last] = { temp,0 };
-		}
-		cyc++;
-	}
+	Branch_Predict(Fetch*, F_Buffer*, IF_ID_Buffer*);
+	void predict();
 
 };
 

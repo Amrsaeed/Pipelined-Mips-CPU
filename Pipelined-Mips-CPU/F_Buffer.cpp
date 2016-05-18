@@ -10,7 +10,7 @@ void F_Buffer::reset()
 
 void F_Buffer::setJtype(int x) 
 {
-	if (x == 1 || x == 0 || x == 2 || x == 3)
+	if (x == 1 || x == 0 || x == 2 || x == 3 || x == 4 || x == 5)
 		Jtype = x;
 	else
 		throw ("Invalid JType. Check Decoder!");
@@ -59,4 +59,12 @@ uint32_t F_Buffer::getnpc() const
 uint8_t F_Buffer::getBen() const 
 {
 	return Ben;
+}
+
+void F_Buffer::setall(uint32_t x)
+{
+	npc = x;
+	Bimm = x;
+	Jimm = x;
+	jr = x;
 }

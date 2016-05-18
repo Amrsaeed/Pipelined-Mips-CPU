@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include "IF_ID_Buffer.h"
 #include "ID_EX_Buffer.h"
+#include "F_Buffer.h"
 
 
 #ifndef REGISTERFILE_H
@@ -11,7 +12,7 @@ class RegisterFile
 {
 public:
 	RegisterFile();
-	RegisterFile(IF_ID_Buffer*, ID_EX_Buffer*);
+	RegisterFile(IF_ID_Buffer*, ID_EX_Buffer*, F_Buffer*);
 	void InsertPrevBuffer(IF_ID_Buffer*);
 	void InsertNextBuffer(ID_EX_Buffer*);
 	void read();
@@ -21,7 +22,7 @@ public:
 private:
 	IF_ID_Buffer* PrevBufferPtr;
 	ID_EX_Buffer* NextBufferPtr;
-	//int32_t Registers[32];
+	F_Buffer* FB;
 	//bool R_Ens[32];
 	uint32_t Instruction;
 

@@ -1,8 +1,8 @@
 #include "Memory.h"
 
-Memory:: Memory(EX_MEM_Buffer* EX_MEM, Mem_Buffer* Mem) : PrevBufferPtr(EX_MEM), NextBufferPtr(Mem)
+Memory:: Memory(EX_MEM_Buffer* EX_MEM, Mem_Buffer* Mem, ID_EX_Buffer* IDEX) : PrevBufferPtr(EX_MEM), NextBufferPtr(Mem), IDEX_B(IDEX)
 {
-    
+	count = 0;
 }
 
 
@@ -75,12 +75,21 @@ void Memory::Forwarding()
 	else
 		WriteData = PrevBufferPtr->getS2Data();
 
+	if (((PrevBufferPtr->getDesAddress() == IDEX_B->getS1Add()) || (PrevBufferPtr->getDesAddress() == IDEX_B->getS2Add())) && PrevBufferPtr->getDataEn()
+		&& PrevBufferPtr->getOPcode() == 35 && count == 0)
+	{
+		NextBufferPtr->setStall(true);
+		count++;
+	}
+	else
+		count = 0;
+
 }
 
 void Memory:: Run()
 {	
 	Forwarding();
-    getSignals();
+	getSignals();
     MemWrite();
 
 

@@ -14,6 +14,7 @@
 #include "ID_EX_Buffer.h"
 #include "EX_MEM_Buffer.h"
 #include "Mem_Buffer.h"
+#include "Branch_Predict.h"
 
 class Processor
 {
@@ -32,10 +33,11 @@ private:
 	Memory* DataMemory;
 	WriteBack* WB;
 
-	friend class Branch_Predict;
+	//Branch Predictor
+	Branch_Predict* BTP;
 
 public:
-	Processor(std::string);
+	Processor(vector<string>&);
 	void Start();
 };
 

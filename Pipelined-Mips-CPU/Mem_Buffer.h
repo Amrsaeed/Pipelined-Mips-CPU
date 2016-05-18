@@ -41,6 +41,8 @@ public:
 	int32_t getS1Add();
 	int32_t getS2Add();
 	uint32_t getOPcode();
+	bool getStall();
+	bool getStallCount();
     
     //Set Methods
 	void setOPcode(uint32_t);
@@ -67,6 +69,8 @@ public:
 	void setMemOut(int32_t);
 	void setS1Add(int32_t);
 	void setS2Add(int32_t);
+	void setStall(bool);
+	void setStallCount(bool);
     
 private:
     bool DataEn;
@@ -79,6 +83,8 @@ private:
     bool zero_flag;
     bool neg_flag;
     bool Branch_en;
+	bool Stall;
+	bool StallCount;
     uint8_t JType;
     uint8_t DesSelect;
     uint8_t ALUOp;

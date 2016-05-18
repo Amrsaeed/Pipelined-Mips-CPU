@@ -23,6 +23,7 @@ public:
 	void setDataAddress(uint8_t);
 	void setDestData(uint32_t);
 	void setDataEn(bool);
+	void kill();
 
 private:
 	uint32_t Instruction;

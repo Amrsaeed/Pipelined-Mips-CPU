@@ -16,7 +16,7 @@ void RegisterFile::InsertNextBuffer(ID_EX_Buffer* ID_EX)
 
 }
 
-RegisterFile::RegisterFile(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX): PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX)
+RegisterFile::RegisterFile(IF_ID_Buffer* IF_ID, ID_EX_Buffer* ID_EX, F_Buffer* F_B): PrevBufferPtr(IF_ID), NextBufferPtr(ID_EX), FB(F_B)
 {
 	clear();
 }

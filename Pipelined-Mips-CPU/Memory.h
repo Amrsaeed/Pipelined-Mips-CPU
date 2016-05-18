@@ -13,9 +13,10 @@
 class Memory{
     
 public:
-    Memory(EX_MEM_Buffer*, Mem_Buffer*);
+    Memory(EX_MEM_Buffer*, Mem_Buffer*, ID_EX_Buffer*);
     void Run();
 private:
+	ID_EX_Buffer* IDEX_B;
     EX_MEM_Buffer* PrevBufferPtr;
     Mem_Buffer* NextBufferPtr;
     void MemWrite();
@@ -23,6 +24,7 @@ private:
 	uint32_t getMem_array();
 
 	int WriteData;
+	int count;
 
 	bool OldDataEn1 = false;
 	bool OldDataEn2;

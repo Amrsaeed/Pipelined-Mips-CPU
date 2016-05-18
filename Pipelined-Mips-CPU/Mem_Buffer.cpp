@@ -9,7 +9,10 @@
 #include "Mem_Buffer.h"
 
 Mem_Buffer::Mem_Buffer(): Buffer()
-{}
+{
+	Stall = false;
+	StallCount = false;
+}
 
 void Mem_Buffer::operator=(const Mem_Buffer& a)
 {
@@ -37,6 +40,8 @@ void Mem_Buffer::operator=(const Mem_Buffer& a)
 	S1Add = a.S1Add;
 	S2Add = a.S2Add;
 	OPcode = a.OPcode;
+	Stall = a.Stall;
+	StallCount = a.StallCount;
 }
 
 int32_t Mem_Buffer::getS1Add()
@@ -59,6 +64,25 @@ void Mem_Buffer::setS2Add(int32_t a)
 	S2Add = a;
 }
 
+void Mem_Buffer::setStall(bool a)
+{
+	Stall = a;
+}
+
+bool Mem_Buffer::getStall()
+{
+	return Stall;
+}
+
+void Mem_Buffer::setStallCount(bool a)
+{
+	StallCount = a;
+}
+
+bool Mem_Buffer::getStallCount()
+{
+	return StallCount;
+}
 
 bool Mem_Buffer::getDataEn()
 {

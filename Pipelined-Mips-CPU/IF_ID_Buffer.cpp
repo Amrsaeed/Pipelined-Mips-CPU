@@ -62,3 +62,8 @@ void IF_ID_Buffer::setDataEn(bool a)
 {
 	Data_En = a;
 }
+
+void IF_ID_Buffer::kill()
+{
+	Instruction = 0;
+}

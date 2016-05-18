@@ -1,9 +1,12 @@
 #include <iostream>
+#include <vector>
+#include <string>
 #include "Processor.h"
 
 int main()
 {
-	Processor Superman("Test.txt");
+	vector<string> Potato;
+	Processor Superman(Potato);
 
 	Superman.Start();
 
