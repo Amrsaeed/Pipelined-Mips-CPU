@@ -8,7 +8,7 @@ class F_Buffer : private Buffer
 {
 private:
 	uint8_t Jtype;
-	uint8_t Ben;
+	bool Ben;
 	uint32_t Jimm;
 	uint32_t Bimm;
 	uint32_t jr;
@@ -20,7 +20,7 @@ public:
 	void setJtype(int x);
 	void setJimm(uint32_t x);
 	void setBimm(uint32_t x);
-	void setBen(uint8_t x);
+	void setBen(bool x);
 	void setjr(uint32_t x);
 	void setnpc(uint32_t x);
 	uint8_t getJtype() const;
@@ -28,7 +28,7 @@ public:
 	uint32_t getJimm() const;
 	uint32_t getjr() const;
 	uint32_t getnpc() const;
-	uint8_t getBen() const;
+	bool getBen() const;
 	void setall(uint32_t);
 
 };

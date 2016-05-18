@@ -30,10 +30,10 @@ void Decode::RunAsynchronous()
 	else
 		DataB = NextBufferPtr->getS2Data();
 
-	if ((DataA&(1<<31)) == (DataB&(1<<31)))
-		FB->setBen(1);
+	if ((DataA) == (DataB))
+		FB->setBen(false);
 	else
-		FB->setBen(0);
+		FB->setBen(true);
 
 	uint8_t tempDesSelect = NextBufferPtr->getDesSelect();
 	uint8_t tempSource1 = (PrevBufferPtr->getInstruction() & 0x7C00) >> 11;
@@ -65,6 +65,13 @@ void Decode::RunAsynchronous()
 	if (NextBufferPtr->getJType() == 0)
 	{
 		NextBufferPtr->setPC(NextBufferPtr->getS2Data());
+	}
+	else if (NextBufferPtr->getJType() == 2)
+	{
+		PrevBufferPtr->setDataEn(true);
+		PrevBufferPtr->setDataAddress(16);
+		PrevBufferPtr->setDestData(PrevBufferPtr->getPC());
+		RF->write();
 	}
 	else if (NextBufferPtr->getJType() == 3)
 		NextBufferPtr->setPC(NextBufferPtr->getS2Data());

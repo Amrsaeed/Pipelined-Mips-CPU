@@ -24,7 +24,7 @@ void F_Buffer::setBimm(uint32_t x)
 {
 	Bimm = x;
 }
-void F_Buffer::setBen(uint8_t x) 
+void F_Buffer::setBen(bool x) 
 {
 	Ben = x;
 }
@@ -56,7 +56,7 @@ uint32_t F_Buffer::getnpc() const
 {
 	return npc;
 }
-uint8_t F_Buffer::getBen() const 
+bool F_Buffer::getBen() const 
 {
 	return Ben;
 }

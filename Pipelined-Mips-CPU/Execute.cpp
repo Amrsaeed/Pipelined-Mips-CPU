@@ -24,7 +24,7 @@ void Execute:: getSignals()
     NextBufferPtr->setPC(PrevBufferPtr->getPC());
 	NextBufferPtr->setNeg_flag(NextBufferPtr->getALUout() < 0 ? 1 : 0);
 	NextBufferPtr->setZero_flag(NextBufferPtr->getALUout() == 0 ? 1 : 0);
-	//NextBufferPtr->setBranch_en(NextBufferPtr->getZero_flag() ^ NextBufferPtr->getBranchType());
+	NextBufferPtr->setBranch_en(NextBufferPtr->getZero_flag() ^ NextBufferPtr->getBranchType());
 	NextBufferPtr->setOPcode(PrevBufferPtr->getOPcode());
    
 }
